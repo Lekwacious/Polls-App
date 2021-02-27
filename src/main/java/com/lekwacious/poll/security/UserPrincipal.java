@@ -16,7 +16,7 @@ import com.lekwacious.poll.data.models.User;
 @Data
 public class UserPrincipal implements UserDetails {
 
-    private Integer id;
+    private Long id;
 
     private String username;
 
@@ -33,7 +33,7 @@ public class UserPrincipal implements UserDetails {
     private Collection<? extends GrantedAuthority> authorities;
 
 
-    public UserPrincipal(Integer id, String username, String firstName, String lastName, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+    public UserPrincipal(Long id, String username, String firstName, String lastName, String email, String password, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
         this.firstName = firstName;
