@@ -4,7 +4,6 @@ import com.lekwacious.poll.data.audit.DateAudit;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.NaturalId;
-import com.lekwacious.poll.data.models.Roles;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
