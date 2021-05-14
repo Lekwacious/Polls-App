@@ -10,6 +10,8 @@ import com.lekwacious.poll.security.UserPrincipal;
 import com.lekwacious.poll.security.payload.reponsePayload.*;
 import com.lekwacious.poll.service.PollService;
 import com.lekwacious.poll.utils.AppConstants;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,14 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/polls")
+@ApiResponses(value ={
+        @io.swagger.annotations.ApiResponse(code=400, message = "This is a bad request, please follow the API documentation for the proper request format"),
+        @io.swagger.annotations.ApiResponse(code=401, message = "Due to security constraints, your access request cannot be authorized"),
+        @ApiResponse(code=500, message = "The server is down. Please bear with us."),
+
+
+}
+)
 public class UserController {
 
     @Autowired

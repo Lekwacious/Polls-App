@@ -11,6 +11,7 @@ import com.lekwacious.poll.security.payload.reponsePayload.ApiResponse;
 import com.lekwacious.poll.security.payload.reponsePayload.JwtAuthenticationResponse;
 import com.lekwacious.poll.security.payload.requestPayload.LoginRequest;
 import com.lekwacious.poll.security.payload.requestPayload.SignUpRequest;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,14 @@ import java.util.Collections;
 
 @RestController
 @RequestMapping("/api/auth")
+@ApiResponses(value ={
+        @io.swagger.annotations.ApiResponse(code=400, message = "This is a bad request, please follow the API documentation for the proper request format"),
+        @io.swagger.annotations.ApiResponse(code=401, message = "Due to security constraints, your access request cannot be authorized"),
+        @io.swagger.annotations.ApiResponse(code=500, message = "The server is down. Please bear with us."),
+
+
+}
+)
 public class AuthenticationController {
 
     @Autowired

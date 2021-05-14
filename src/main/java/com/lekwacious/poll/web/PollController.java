@@ -13,6 +13,7 @@ import com.lekwacious.poll.security.payload.requestPayload.PollRequest;
 import com.lekwacious.poll.security.payload.requestPayload.VoteRequest;
 import com.lekwacious.poll.service.PollService;
 import com.lekwacious.poll.utils.AppConstants;
+import io.swagger.annotations.ApiResponses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,14 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/api/polls")
+@ApiResponses(value ={
+        @io.swagger.annotations.ApiResponse(code=400, message = "This is a bad request, please follow the API documentation for the proper request format"),
+        @io.swagger.annotations.ApiResponse(code=401, message = "Due to security constraints, your access request cannot be authorized"),
+        @io.swagger.annotations.ApiResponse(code=500, message = "The server is down. Please bear with us."),
+
+
+}
+)
 public class PollController {
     @Autowired
     PollService pollService;
@@ -50,7 +59,7 @@ public class PollController {
 
     }
 
-    @PostMapping
+    @PostMapping("/create")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> createPoll(@Valid @RequestBody PollRequest pollRequest){
         Poll poll = pollService.createPoll(pollRequest);

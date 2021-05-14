@@ -37,6 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public JwtAuthenticationFIlter jwtAuthenticationFIlter(){
+
         return new JwtAuthenticationFIlter();
     }
 
@@ -80,15 +81,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.jpg",
                         "/**/*.html",
                         "/**/*.css",
-                        "/**/*.js")
+                        "/**/*.js",
+                        "/swagger-resources/**",
+                        "/swagger-ui.html",
+                        "/v2/api-docs",
+                        "/webjars/**")
                 .permitAll()
-                .antMatchers("/api/auth/**")
+                .antMatchers("/api/**")
                 .permitAll()
                 .antMatchers("/api/user/checkUsernameAvailability", "/api/user/checkEmailAvailability" )
                 .permitAll()
                 .antMatchers(HttpMethod.GET, "/api/polls/**", "/api/users/**")
                 .permitAll()
-                .anyRequest().authenticated();
+                ;
 
         http.addFilterBefore(jwtAuthenticationFIlter(), UsernamePasswordAuthenticationFilter.class);
 
